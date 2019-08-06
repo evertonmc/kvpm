@@ -12,6 +12,7 @@ func GetBasicClient() (keyvault.BaseClient, error) {
 	authorizer, err := autorest.NewAuthorizerFromEnvironment()
 	if err != nil {
 		deviceConfig := autorest.NewDeviceFlowConfig(os.Getenv("AZURE_CLIENT_ID"), os.Getenv("AZURE_TENANT_ID"))
+		deviceConfig.Resource = "https://"+ os.Getenv("KVAULT") +".vault.azure.net"
 		authorizer, derr := deviceConfig.Authorizer()
 		if derr != nil {
 			return keyvault.New(), derr
