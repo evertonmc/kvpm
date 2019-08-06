@@ -8,7 +8,11 @@ import (
 func GetBasicClient() (keyvault.BaseClient, error) {
 	authorizer, err := kvauth.NewAuthorizerFromEnvironment()
 	if err != nil {
-		return keyvault.New(), err
+		deviceConfig := kvauth.NewDeviceFlowConfig(applicationID, tenantID)
+		authorizer, derr := deviceConfig.Authorizer()
+		if derr != nil {
+			return keyvault.New(), derr
+		}
 	}
 
 	basicClient := keyvault.New()
