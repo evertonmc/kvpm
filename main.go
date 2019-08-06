@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/esell/kvpm/cmd"
+	"github.com/evertonmc/kvpm/cmd"
 )
 
 func main() {
